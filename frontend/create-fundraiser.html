@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Create Fundraiser | Hope Chain</title>
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', sans-serif; background: #f8fafc; color: #1e293b; }
+
+  nav {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    position: sticky; top: 0; z-index: 1000;
+  }
+
+  nav ul { list-style: none; display: flex; gap: 22px; align-items: center; }
+  nav ul li a { text-decoration: none; color: #475569; font-weight: 600; }
+
+  .container {
+    max-width: 800px; margin: 40px auto; background: white;
+    padding: 40px; border-radius: 14px; box-shadow: 0 6px 22px rgba(0,0,0,0.1);
+  }
+
+  button {
+    padding: 14px; margin-top: 12px; border: none; cursor: pointer;
+    border-radius: 10px; color: white; width: 100%;
+    font-size: 16px; font-weight: 700;
+  }
+  #submitBtn { background: #6366f1; }
+  #connectWalletBtn { background: #22c55e; }
+
+  input, textarea, select {
+    width: 100%; padding: 14px; border-radius: 8px;
+    border: 2px solid #e2e8f0; margin-top: 6px;
+  }
+
+  .msg { display:none; padding:14px; border-radius:8px; font-weight:600; text-align:center; margin:15px 0; }
+  .msg.show { display:block; }
+  .msg.success { background:#dcfce7; color:#166534; }
+  .msg.error { background:#fee2e2; color:#991b1b; }
+  .msg.info { background:#dbeafe; color:#1e40af; }
+
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">Hope Chain</div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="ngo-dashboard.html">Dashboard</a></li>
+    <li><a href="fundraiser.html">View Fundraisers</a></li>
+    <li><a id="logoutBtn" href="#">Logout</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+  <h2>Create New Fundraiser</h2>
+  <p>Blockchain-backed transparent fundraising</p>
+
+  <div id="msg" class="msg"></div>
+
+  <form id="fundraiserForm">
+
+    <label>Title *</label>
+    <input type="text" id="title" required />
+
+    <label>Description *</label>
+    <textarea id="description" required></textarea>
+
+    <label>Goal Amount (₹) *</label>
+    <input type="number" id="goal" required />
+
+    <label>Category *</label>
+    <input type="text" id="category" required />
+
+    <label>People Affected *</label>
+    <input type="number" id="people" required />
+
+    <label>Fundraiser Type *</label>
+    <select id="type"><option value="public">Public</option><option value="private">Private</option></select>
+
+    <button type="button" id="connectWalletBtn">Connect MetaMask</button>
+    <button type="submit" id="submitBtn">Create Fundraiser</button>
+
+    <p id="bcMsg" style="margin-top:10px;color:green;font-weight:600;"></p>
+
+  </form>
+</div>
+
+<!-- Load Web3 + ABI + JS -->
+<script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+<script src="contractConfig.js"></script>
+<script src="create-fundraiser.js"></script>
+
+</body>
+</html>
